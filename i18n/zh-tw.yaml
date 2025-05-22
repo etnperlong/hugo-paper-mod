@@ -31,3 +31,6 @@
 
 - id: code_copied
   translation: "已複製！"
+
+- id: lastmod
+  translation: "更新於"
