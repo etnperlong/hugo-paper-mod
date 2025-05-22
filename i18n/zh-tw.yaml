@@ -33,4 +33,7 @@
   translation: "已複製！"
 
 - id: lastmod
-  translation: "更新於"
+  translation: "最後修訂"
+
+- id: firstwritten
+  translation: "首次編寫"

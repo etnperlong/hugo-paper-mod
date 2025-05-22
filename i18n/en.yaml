@@ -34,3 +34,6 @@
 
 - id: lastmod
   translation: "Last Modified"
+
+- id: firstwritten
+  translation: "First Written"

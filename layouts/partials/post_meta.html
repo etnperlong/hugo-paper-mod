@@ -1,8 +1,13 @@
 {{- $scratch := newScratch }}
 
 {{- if not .Date.IsZero -}}
-{{- $scratch.Add "meta" (slice (printf "<span title='%s'>%s</span>" (.Date) (.Date | time.Format (default "January 2, 2006" site.Params.DateFormat)))) }}
-{{- end }}
+{{- $dateFormat := default "January 2, 2006" site.Params.DateFormat -}}
+{{- $dateLabel := "" -}}
+{{- if and (.Param "Lastmod") (ne (.Param "Lastmod" | time.Format "2006-01-02") (.Date | time.Format "2006-01-02")) -}}
+{{- $dateLabel = i18n "firstwritten" | default "First Written" -}}
+{{- end -}}
+{{- $scratch.Add "meta" (slice (printf "<span title='%s'>%s%s</span>" (.Date) (cond (eq $dateLabel "") "" (printf "%s: " $dateLabel)) (.Date | time.Format $dateFormat))) -}}
+{{- end -}}
 
 {{- if and (.Param "Lastmod") (ne (.Param "Lastmod"| time.Format "2023-10-15") (.Date | time.Format "2023-10-15" )) }}
 {{- $scratch.Add "meta" (slice (printf "<span title='%s'>%s: %s</span>" (.Lastmod) (i18n "lastmod") (.Lastmod | time.Format (default "January 2, 2006" site.Params.DateFormat)))) }}
